@@ -32,7 +32,7 @@ def generate_plan(goal, days, hours):
     """
 
     res = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}]
     )
     return res.choices[0].message.content
