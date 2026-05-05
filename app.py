@@ -47,18 +47,3 @@ if st.button("Generate Plan"):
 if st.session_state.plan:
     st.subheader("📅 Study Plan")
     st.write(st.session_state.plan)
-
-    if st.button("❌ I Missed Today"):
-        adjust_prompt = f"""
-        Adjust this study plan since user missed 1 day:
-        {st.session_state.plan}
-        Redistribute tasks smartly.
-        """
-
-        res = client.chat.completions.create(
-            model="llama3-70b-8192",
-            messages=[{"role": "user", "content": adjust_prompt}]
-        )
-
-        st.session_state.plan = res.choices[0].message.content
-        st.success("Plan Adjusted!")
